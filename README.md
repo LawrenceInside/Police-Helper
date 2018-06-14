@@ -1,8 +1,8 @@
 POLICE HELPER
 
-Универсальный скрипт для сотрудников полиции сервера Grand Role Play.
+Универсальный скрипт написаный на скриптовом языке "LUA", отлично подойдет для работы сотрудников полиции сервера Grand Role Play.
+В данном скрипте есть на данный момент:
+• Все виды РП отыгровок к командам (/su, /cuff, /arrest, и.т.д)
 
-- developer: 
+developer: 
 https://vk.com/lawrence.inside
-
-Charles_Waters (Saturn)
