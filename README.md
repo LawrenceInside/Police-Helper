@@ -6,5 +6,17 @@ POLICE HELPER
 
 • Все виды РП отыгровок к командам (/su, /cuff, /arrest, и.т.д)
 
+
+
+
+
+
+
+
+
+
+
+
+
 developer: 
 https://vk.com/lawrence.inside
