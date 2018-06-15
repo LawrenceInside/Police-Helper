@@ -275,9 +275,7 @@ function CheckUpdate()
 	local dlstatus = require('moonloader').download_status
 	downloadUrlToFile(updatefile, thisScript().path, function(id, status)
 	  if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-		sampAddChatMessage("{3399FF}[Police Helper] {FFFFFF}Вышло новое обновление скрипта!", -1)
-		sampAddChatMessage("{3399FF}[Police Helper] {FFFFFF}Скрипт автоматически обновиться.", -1)
-		thisScript(): reload()
+		thisScript():reload()
 	  end
 	end)
 end
