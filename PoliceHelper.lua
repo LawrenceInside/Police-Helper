@@ -271,13 +271,33 @@ function ClearChat()
     memory.write(sampGetChatInfoPtr() + 0x63DA, 1, 1)
 end
 
+function getUpdateByUrl(url)
+    local n_file, bool, users = os.getenv('TEMP')..os.time(), false, {}
+    downloadUrlToFile(url, n_file, function(id, status)
+        if status == 6 then bool = true end
+    end)
+    while not doesFileExist(n_file) do wait(0) end
+    if bool then
+        local file = io.open(n_file, 'r')
+        for w in file:lines() do
+            local vn, textupd = w:match('versionnew: (.*): textupd: (.*)')
+			if vn > Version then
+				downloadUrlToFile(updatefile, 'moonloader\\PoliceHelper.lua')
+				sampAddChatMessage("[Police Helper] {FFFFFF}Вышло новое обновление скрипта!", 0x3399FF)
+				sampAddChatMessage(string.format("[Police Helper] {FFFFFF}%s", textupd), 0x3399FF)
+				wait(1000)
+				thisScript: reload()
+			end
+        end
+        file:close()
+        os.remove(n_file)
+    end
+    return bool, users
+end
+
 function CheckUpdate()
-	local dlstatus = require('moonloader').download_status
-	downloadUrlToFile(updatefile, thisScript().path, function(id, status)
-	  if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-		thisScript():reload()
-	  end
-	end)
+	local bool = getUpdateByUrl(update)
+    assert(bool, '\n\n\n\n{3399FF}[Police Helper] {FFFFFF}При обновления скрипта, произошла ошибка.\n\n\n')
 end
 
 function CheckSub()
